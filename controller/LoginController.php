@@ -6,7 +6,7 @@ require_once '../config/includes/config.php';
 require_once '../model/LoginModel.php';
 //require_once '../objetos/ClienteDTO.php';
 
-
+//login e senha
 $username = $_POST["nome"];
 $password = $_POST["senha"];
 
