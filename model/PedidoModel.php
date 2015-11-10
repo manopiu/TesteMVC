@@ -16,8 +16,6 @@ class PedidoModel{
 		$conn = new Conexao();
 		
 		$query = $conn->Conn();
-		
-		$taxa;
 			
 		$resultado = $query->query($sql);
 			
@@ -25,9 +23,10 @@ class PedidoModel{
 			die('Consulta Inválida: ' . mysql_errno());
 		}
 		$reg = mysqli_fetch_assoc($resultado);
-				echo $reg["tax_valor"];
+
+		$taxa = $reg["tax_valor"];
 				
-		return $reg["tax_valor"];
+		return $taxa;
 	}
 	
 	

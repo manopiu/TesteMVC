@@ -6,6 +6,7 @@ require_once '../model/ProdutoModel.php';
 require_once '../model/PedidoModel.php';
 require_once '../objetos/ProdutoDTO.php';
 require_once '../objetos/PedidoDTO.php';
+require_once '../objetos/ClienteDTO.php';
 require_once '../config/includes/config.php';
 
 
@@ -47,7 +48,14 @@ if($acao == "carregar"){
 	//criar um produtoDTO novo
 	$pedidoDTO = new PedidoDTO();
 	$pedidoDTO->setTaxa($taxa);
-	$pedidoDTO->setClienteDTO(unserialize('usuario'));
+	echo "<br>Taxa = ".$pedidoDTO->getTaxa();
+	
+	$clienteDTO = new ClienteDTO();
+	$clienteDTO = unserialize ($_SESSION['usuario']);
+	
+	//echo "<br>".$clienteDTO->getNome()."<br>";
+	$pedidoDTO->setClienteDTO($clienteDTO);
+	//echo "<br>Taxa = ".$pedidoDTO->getTaxa();
 	$_SESSION['pedido'] = serialize($pedidoDTO);
 	
 	//foreach($arrayProdutos as $produtoDTO) {
@@ -99,6 +107,8 @@ if($acao == "carregar"){
 	
 	$_SESSION['pedido'] = serialize($pedidoDTO);
 	$_SESSION['produtosCarrinho'] = serialize($arrayProdutosCarrinho);
+	
+	echo "<br>Taxa = ".$pedidoDTO->getTaxa();
 	
 	header("location:".URL."/Pedido/novo");
 }

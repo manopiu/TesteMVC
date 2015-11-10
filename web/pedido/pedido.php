@@ -55,10 +55,10 @@ function cancelarProduto(){
             <select class="paddingcinco" name="produto" id="produto">
     	 	<option value="">Selecione...</option>
     	 	<?php 
-    	 	foreach ($arrayProdutos as $produtoDTO){
+    	 	foreach ($arrayProdutos as $produtos){
     	 		
-			echo "<option value=".$produtoDTO->getID().">".
-				$produtoDTO->getNome()." - ".$produtoDTO->getTamanho()."</option>";
+			echo "<option value=".$produtos->getID().">".
+				$produtos->getNome()." - ".$produtos->getTamanho()."</option>";
 			}
 			?>
     	 </select>  
@@ -95,12 +95,12 @@ function cancelarProduto(){
     <?php 
     
     
-    foreach($carrinho as $produtoDTO) {?>
+    foreach($carrinho as $produtosDTO) {?>
     	<tr>
-    	<td ><?php echo $produtoDTO->getNome()." - ".$produtoDTO->getTamanho(); ?></td>
-    	<td align="center"><?php print $produtoDTO->getCusto();?></td>
-    	<td align="center"><?php print $produtoDTO->getQuantidade();?></td>
-    	<td align="center"><?php print number_format(($produtoDTO->getCusto()*$produtoDTO->getQuantidade()),2,",",".");;?></td>
+    	<td ><?php echo $produtosDTO->getNome()." - ".$produtosDTO->getTamanho(); ?></td>
+    	<td align="center"><?php print $produtosDTO->getCusto();?></td>
+    	<td align="center"><?php print $produtosDTO->getQuantidade();?></td>
+    	<td align="center"><?php print number_format(($produtosDTO->getCusto()*$produtosDTO->getQuantidade()),2,",",".");;?></td>
     	<td align="center">
     		<a href="#" onclick="cancelarProduto();">
     	 		<img src="<?php echo URL.'/'.DIR_IMG.'/cancelar_001.png'; ?>" width="20" >
@@ -108,16 +108,16 @@ function cancelarProduto(){
         </td>
         </tr>
 	<?php 
-    $total = $total + ($produtoDTO->getCusto()*$produtoDTO->getQuantidade());
+    $total = $total + ($produtosDTO->getCusto()*$produtosDTO->getQuantidade());
     }?>
    
     <tr>
     	<td colspan="3" align="right">Taxa de entrega:</td>
-     	<td></td>    	
+     	<td><?php print number_format($pedidoDTO->getTaxa(),2,",","");?></td>    	
     </tr>
     <tr>
     	<td colspan="3" align="right">Valor total:</td>
-     	<td align="center"><?php print number_format($total,2,",","");?></td>    	
+     	<td align="center"><?php print number_format($total+$pedidoDTO->getTaxa(),2,",","");?></td>    	
     </tr>
     </table>
      <?php }

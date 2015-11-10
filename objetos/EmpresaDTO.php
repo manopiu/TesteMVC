@@ -22,7 +22,7 @@ class EmpresaDTO {
 	}
 
 	public function getId(){
-		$this->id;
+		return $this->id;
 	}
 	
 	//nome
@@ -31,7 +31,7 @@ class EmpresaDTO {
 	}
 	
 	public function getNome(){
-		$this->nome;
+		return $this->nome;
 	}
 	//cnpj
 	public function setCNPJ ($cnpj){
@@ -39,7 +39,7 @@ class EmpresaDTO {
 	}
 	
 	public function getCNPJ(){
-		$this->cnpj;
+		return $this->cnpj;
 	}
 	//enderco
 	public function setEndereco ($endereco){
@@ -47,7 +47,7 @@ class EmpresaDTO {
 	}
 	
 	public function getEndereco(){
-		$this->endereco;
+		return $this->endereco;
 	}
 	//telefone
 	public function setTelefone ($telefone){
@@ -55,7 +55,7 @@ class EmpresaDTO {
 	}
 	
 	public function getTelefone(){
-		$this->telefone;
+		return $this->telefone;
 	}
 	//email
 	public function setEmail ($email){
@@ -63,7 +63,7 @@ class EmpresaDTO {
 	}
 	
 	public function getEmail(){
-		$this->email;
+		return $this->email;
 	}
 	//status S = sim / N = nao 
 	public function setStatus($status){
@@ -71,7 +71,7 @@ class EmpresaDTO {
 	}
 	
 	public function getStatus(){
-		$this->status;
+		return $this->status;
 	}
 	/** fim dos gets e sets **/
 }

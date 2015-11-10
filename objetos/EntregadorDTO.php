@@ -22,7 +22,7 @@ class EntregadorDTO {
 	}
 
 	public function getId(){
-		$this->id;
+		return $this->id;
 	}
 	//empresaDTO
 	public function setEmpresaDTO ($empresa){
@@ -30,7 +30,7 @@ class EntregadorDTO {
 	}
 	
 	public function getEmpresaDTO(){
-		$this->empresaDTO;
+		return $this->empresaDTO;
 	}
 	//nome
 	public function setNome ($nome){
@@ -38,7 +38,7 @@ class EntregadorDTO {
 	}
 	
 	public function getNome(){
-		$this->nome;
+		return $this->nome;
 	}
 	//cpf
 	public function setCPF ($cpf){
@@ -46,7 +46,7 @@ class EntregadorDTO {
 	}
 	
 	public function getCPF(){
-		$this->cpf;
+		return $this->cpf;
 	}
 	//rg
 	public function setRG ($rg){
@@ -54,7 +54,7 @@ class EntregadorDTO {
 	}
 	
 	public function getRG(){
-		$this->rg;
+		return $this->rg;
 	}
 	//telefone
 	public function setTelefone ($telefone){
@@ -62,7 +62,7 @@ class EntregadorDTO {
 	}
 	
 	public function getTelefone(){
-		$this->telefone;
+		return $this->telefone;
 	}
 	//status S = sim / N = nao 
 	public function setStatus($status){
@@ -70,7 +70,7 @@ class EntregadorDTO {
 	}
 	
 	public function getStatus(){
-		$this->status;
+		return $this->status;
 	}
 	/** fim dos gets e sets **/
 }

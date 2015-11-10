@@ -26,7 +26,7 @@ class PedidoDTO {
 	}
 
 	public function getId(){
-		$this->id;
+		return $this->id;
 	}
 	//clienteDTO
 	public function setClienteDTO ($cliente){
@@ -34,15 +34,15 @@ class PedidoDTO {
 	}
 	
 	public function getClienteDTO(){
-		$this->clienteDTO;
+		return $this->clienteDTO;
 	}
 	//entregadorDTO
 	public function setEntregadorDTO ($entregador){
-		$this->entregadorDTODTO = $entregador;
+		$this->entregadorDTO = $entregador;
 	}
 	
 	public function getEntregadorDTO(){
-		$this->entregadorDTODTO;
+		return $this->entregadorDTO;
 	}
 	//sessao
 	public function setSessao ($sessao){
@@ -50,7 +50,7 @@ class PedidoDTO {
 	}
 	
 	public function getSessao(){
-		$this->sessao;
+		return $this->sessao;
 	}
 	//troco
 	public function setTroco ($troco){
@@ -58,7 +58,7 @@ class PedidoDTO {
 	}
 	
 	public function getTroco(){
-		$this->troco;
+		return $this->troco;
 	}
 	//valorTotal
 	public function setValorTotal($valor){
@@ -66,7 +66,7 @@ class PedidoDTO {
 	}
 	
 	public function getValorTotal(){
-		$this->valorTotal;
+		return $this->valorTotal;
 	}
 	//dataPedido
 	public function setDataPedido ($data){
@@ -74,7 +74,7 @@ class PedidoDTO {
 	}
 	
 	public function getDataPedido(){
-		$this->dataPedido;
+		return $this->dataPedido;
 	}
 	//dataEnrega
 	public function setDataEntrega ($data){
@@ -82,7 +82,7 @@ class PedidoDTO {
 	}
 	
 	public function getDataEntrega(){
-		$this->dataEntrega;
+		return $this->dataEntrega;
 	}
 	//status P = / T = / C = cancelado / E = entregue
 	public function setStatus($status){
@@ -90,7 +90,7 @@ class PedidoDTO {
 	}
 	
 	public function getStatus(){
-		$this->status;
+		return $this->status;
 	}
 	
 	//array de produtos
@@ -99,7 +99,7 @@ class PedidoDTO {
 	}
 	
 	public function getArrayProdutos(){
-		$this->arrayProdutoDTO;
+		return $this->arrayProdutoDTO;
 	}
 	
 	//Taxa entrega
@@ -108,7 +108,7 @@ class PedidoDTO {
 	}
 	
 	public function getTaxa(){
-		$this->$taxa;
+		return $this->taxa;
 	}
 	/** Fim dos gets e sets **/
 }
