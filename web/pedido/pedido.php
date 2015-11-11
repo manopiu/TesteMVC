@@ -5,9 +5,12 @@ function adicionarCarrinho(){
 	//window.alert("dentro: " + document.getElementById("acao").value);
 	document.getElementById("pedido").submit();
 }
-function cancelarProduto(){
+function cancelarProduto(idProduto,qtd){
 	document.getElementById("acao").value = "cancelarProduto";
-	//window.alert("dentro: " + document.getElementById("acao").value);
+	document.getElementById("idProduto").value = idProduto;
+	document.getElementById("qtdProduto").value = qtd;
+	//window.alert("dentro: " + document.getElementById("idProduto").value
+	//		+ " - " + document.getElementById("qtdProduto").value);
 	document.getElementById("pedido").submit();
 }
 
@@ -100,9 +103,9 @@ function cancelarProduto(){
     	<td ><?php echo $produtosDTO->getNome()." - ".$produtosDTO->getTamanho(); ?></td>
     	<td align="center"><?php print $produtosDTO->getCusto();?></td>
     	<td align="center"><?php print $produtosDTO->getQuantidade();?></td>
-    	<td align="center"><?php print number_format(($produtosDTO->getCusto()*$produtosDTO->getQuantidade()),2,",",".");;?></td>
+    	<td align="center"><?php print number_format(($produtosDTO->getCusto()*$produtosDTO->getQuantidade()),2,",",".");?></td>
     	<td align="center">
-    		<a href="#" onclick="cancelarProduto();">
+    		<a href="#" onclick="cancelarProduto('<?php print $produtosDTO->getId();?>','<?php print $produtosDTO->getQuantidade(); ?>');">
     	 		<img src="<?php echo URL.'/'.DIR_IMG.'/cancelar_001.png'; ?>" width="20" >
          	</a>
         </td>
@@ -117,14 +120,26 @@ function cancelarProduto(){
     </tr>
     <tr>
     	<td colspan="3" align="right">Valor total:</td>
-     	<td align="center"><?php print number_format($total+$pedidoDTO->getTaxa(),2,",","");?></td>    	
+     	<td align="center">
+     		<?php print number_format($total+$pedidoDTO->getTaxa(),2,",","");?>
+     	</td>    	
+    </tr>
+    <tr>
+    	<td colspan="1">
+    		<input type="radio" name="pagamento" id="pagamento" value="cartao" checked>Cart&atilde;o
+  			<input type="radio" name="pagamento" id="pagamento" value="dinheiro">Dinheiro
+    	</td>
+    	<td colspan="4">
+    		<input type="text" name="troco" id="troco" size="5"> *Valor para c&aacute;lculo do troco
+    	</td>
     </tr>
     </table>
      <?php }
     //}
       ?>
-    <input type="hidden" name="acao" id="acao" value="efetuarPedido">
+    <input type="hidden" name="acao" id="acao" value="">
     <input type="hidden" name="idProduto" id="idProduto" value="">
+    <input type="hidden" name="qtdProduto" id="qtdProduto" value="">
     <br> 
     <input type="submit" value="Fechar Pedido" class="botao direita">
 </form>
