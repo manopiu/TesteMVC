@@ -126,11 +126,13 @@ function cancelarProduto(idProduto,qtd){
     </tr>
     <tr>
     	<td colspan="1">
-    		<input type="radio" name="pagamento" id="pagamento" value="cartao" checked>Cart&atilde;o
-  			<input type="radio" name="pagamento" id="pagamento" value="dinheiro">Dinheiro
+    		<input onclick="Ocultar('trocoDIV','cartao')" type="radio" name="pagamento" id="pagamento" value="cartao" checked>Cart&atilde;o
+                <input onclick="Ocultar('trocoDIV','dinheiro')" type="radio" name="pagamento" id="pagamento" value="dinheiro">Dinheiro
     	</td>
     	<td colspan="4">
-    		<input type="text" name="troco" id="troco" size="5"> *Valor para c&aacute;lculo do troco
+            <div id="trocoDIV" class="ocultar">
+            <input type="text" name="troco" id="troco" size="5"> *Valor para c&aacute;lculo do troco
+            </div>
     	</td>
     </tr>
     </table>

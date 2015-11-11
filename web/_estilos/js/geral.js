@@ -65,3 +65,12 @@ $(function() {
     })
 });
   
+function Ocultar(id,acao){    
+    if(acao==='dinheiro'){
+        $( "#"+id ).removeClass( "ocultar" );
+        $( "#"+id ).fadeIn(100); 
+    }else{
+        $( "#"+id ).addClass( "ocultar" );
+        $( "#"+id ).fadeOut(100); 
+    }
+}

@@ -72,7 +72,7 @@ body{
 a{text-decoration: none; color: #000;}
 a:hover{text-decoration: underline;}
 .Tcentro{text-align: center;}
-
+.ocultar{ visibility: hidden; }
 
 input, textarea{padding: 5px;}
 form, span{ font-weight: bold; }
