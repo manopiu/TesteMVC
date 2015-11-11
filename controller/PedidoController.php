@@ -156,9 +156,8 @@ if($acao == "carregar"){
 	//calcular troco
 	if($troco > 0 && $formaPagamento == "dinheiro"){
 		$pedidoDTO->setFormaPagamento("D");
-		$troco = 
+		//$troco =
 	}
-	
 	
 }
 
