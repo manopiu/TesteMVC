@@ -68,35 +68,34 @@ if($acao == "carregar"){
 }else if($acao == "adicionarCarrinho"){
 	echo "adicionarCarrinho<br>";
 	$produtoID = $_POST["produto"];
-	$qtd = $_POST["qtd"];
 	
-	echo $produtoID;
-	
-	$produtoModel = new ProdutoModel();
-	
-	//recuperando o pedidoDTO
-	//$pedidoDTO = unserialize ($_SESSION['pedido']);
-	
-	if(isset($_SESSION['produtosCarrinho'])){
-		$arrayProdutosCarrinho = unserialize ($_SESSION['produtosCarrinho']);
+	if($produtoID > 0){
+		$qtd = $_POST["qtd"];
 		
+		echo $produtoID;
+		
+		$produtoModel = new ProdutoModel();
+		
+		if(isset($_SESSION['produtosCarrinho'])){
+			$arrayProdutosCarrinho = unserialize ($_SESSION['produtosCarrinho']);
+			
+		}
+		$produtoDTO = $produtoModel->buscarProduto($produtoID);
+		$produtoDTO->setQuantidade($qtd);
+		
+		$arrayProdutosCarrinho[] = ($produtoDTO);
+		
+		echo "buscou<br>";
+		//$array = array($pedidoDTO->getArrayProdutos());
+		//foreach($arrayProdutosCarrinho as $produtoDTO) {
+			//print $produtoDTO->getNome()." sdadgre".$produtoDTO->getId()."<br>";
+		//}
+		
+		//$_SESSION['pedido'] = serialize($pedidoDTO);
+		$_SESSION['produtosCarrinho'] = serialize($arrayProdutosCarrinho);
+		
+		//echo "<br>Taxa = ".$pedidoDTO->getTaxa();
 	}
-	$produtoDTO = $produtoModel->buscarProduto($produtoID);
-	$produtoDTO->setQuantidade($qtd);
-	
-	$arrayProdutosCarrinho[] = ($produtoDTO);
-	
-	echo "buscou<br>";
-	//$array = array($pedidoDTO->getArrayProdutos());
-	//foreach($arrayProdutosCarrinho as $produtoDTO) {
-		//print $produtoDTO->getNome()." sdadgre".$produtoDTO->getId()."<br>";
-	//}
-	
-	//$_SESSION['pedido'] = serialize($pedidoDTO);
-	$_SESSION['produtosCarrinho'] = serialize($arrayProdutosCarrinho);
-	
-	//echo "<br>Taxa = ".$pedidoDTO->getTaxa();
-	
 	header("location:".URL."/Pedido/novo");
 	
 }else if($acao == "cancelarProduto"){
@@ -138,6 +137,27 @@ if($acao == "carregar"){
 }else if($acao == "fecharPedido"){
 	echo "<br>dentro de fecharPedido<br>";
 	
+	//recuperando o pedidoDTO
+	if(isset($_SESSION['pedido'])){
+			$pedidoDTO = unserialize ($_SESSION['pedido']);
+	}
+	
+	//recuperando o carrinho de produtos
+	if(isset($_SESSION['produtosCarrinho'])){
+		$arrayProdutosCarrinho = unserialize ($_SESSION['produtosCarrinho']);
+	}
+	
+	$pedidoDTO->setArrayProdutos($arrayProdutosCarrinho);
+	
+	//pegando forma de pagamento e valor para troco.
+	$formaPagamento = $_POST["pagamento"];
+	$troco = $_POST["troco"];
+	
+	//calcular troco
+	if($troco > 0 && $formaPagamento == "dinheiro"){
+		$pedidoDTO->setFormaPagamento("D");
+		$troco = 
+	}
 	
 	
 }

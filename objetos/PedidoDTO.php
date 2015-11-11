@@ -13,6 +13,7 @@ class PedidoDTO {
 	//status P = Pendente / T = transito / C = cancelado / E = entregue
 	private $status;
 	private $taxa;
+	private $formaPagamento;
 
 	public function PedidoDTO(){
 
@@ -109,6 +110,17 @@ class PedidoDTO {
 	
 	public function getTaxa(){
 		return $this->taxa;
+	}
+	
+	//Forma de pagamento
+	//C = cartao / D = dinheiro
+	public function setFormaPagamento($pagamento){
+		$this->formaPagamento = $pagamento;
+	}
+	
+	
+	public function getFormaPagamento(){
+		return $this->formaPagamento;
 	}
 	/** Fim dos gets e sets **/
 }
