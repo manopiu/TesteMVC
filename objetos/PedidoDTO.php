@@ -85,7 +85,7 @@ class PedidoDTO {
 	public function getDataEntrega(){
 		return $this->dataEntrega;
 	}
-	//status P = / T = / C = cancelado / E = entregue
+	//status P = pendente / T = transito / C = cancelado / E = entregue
 	public function setStatus($status){
 		$this->status = $status;
 	}

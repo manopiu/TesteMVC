@@ -36,6 +36,11 @@ if($acao == "carregar"){
 	if(isset($_SESSION['produtos'])){
 		unset($_SESSION['produtos']);
 	}
+	//limpar pedidoDTO
+	if(isset($_SESSION['pedido'])){
+		unset($_SESSION['pedido']);
+	}
+	
 	//buscar todos os produtos ativos
 	$produtoModel = new ProdutoModel();
 	$arrayProdutos = $produtoModel->buscarProdutosAtivos();
@@ -152,11 +157,34 @@ if($acao == "carregar"){
 	//pegando forma de pagamento e valor para troco.
 	$formaPagamento = $_POST["pagamento"];
 	$troco = $_POST["troco"];
+	$total = $_POST["total"];
+
+	//setar valor total
+	$pedidoDTO->setValorTotal($total);
+	
+	$troco = $troco - $total;
+	//echo "<br>troco = ".$troco.", Pagamento = ".$formaPagamento."<br>";
 	
 	//calcular troco
-	if($troco > 0 && $formaPagamento == "dinheiro"){
+	if($troco > 0 && $formaPagamento == "D"){
 		$pedidoDTO->setFormaPagamento("D");
-		//$troco =
+		$pedidoDTO->setTroco($troco);
+	}else{
+		$pedidoDTO->setFormaPagamento("C");
+	}
+	
+	//instanciar model para persistir o pedido.
+	$pedidoModel = new PedidoModel();
+	
+	$salvo = $pedidoModel->salvarPedido($pedidoDTO);
+	
+	
+	if($salvo){
+		echo "salvo = true";
+		header("location:".URL."/Pedido/pedidoRealizado");
+	}else{
+		echo "salvo = flase";
+		header("location:".URL."/Pedido/novo");
 	}
 	
 }

@@ -34,6 +34,10 @@ class ProdutoModel{
 			}
 		}
 		
+		mysqli_free_result($resultado);
+		
+		$conn->fecharConn();
+		
 		return $produtoDTO;
 		}
 		
@@ -72,8 +76,10 @@ class ProdutoModel{
 				//echo "<br>$i<br>";
 
 			}
+			mysqli_free_result($resultado);
 		}
-				
+		$conn->fecharConn();
+		
 		return $produtosArray;
 	}
 	

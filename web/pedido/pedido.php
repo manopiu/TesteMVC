@@ -126,8 +126,8 @@ function cancelarProduto(idProduto,qtd){
     </tr>
     <tr>
     	<td colspan="1">
-    		<input type="radio" name="pagamento" id="pagamento" value="cartao" checked>Cart&atilde;o
-  			<input type="radio" name="pagamento" id="pagamento" value="dinheiro">Dinheiro
+    		<input type="radio" name="pagamento" id="pagamento" value="C" checked>Cart&atilde;o
+  			<input type="radio" name="pagamento" id="pagamento" value="D">Dinheiro
     	</td>
     	<td colspan="4">
     		<input type="text" name="troco" id="troco" size="5"> *Valor para c&aacute;lculo do troco
@@ -137,7 +137,10 @@ function cancelarProduto(idProduto,qtd){
      <?php }
     //}
       ?>
-    <input type="hidden" name="acao" id="acao" value="">
+      
+    <input type="hidden" name="total" id="total" 
+    	value="<?php print number_format($total+$pedidoDTO->getTaxa(),2,",","");?>">
+    <input type="hidden" name="acao" id="acao" value="fecharPedido">
     <input type="hidden" name="idProduto" id="idProduto" value="">
     <input type="hidden" name="qtdProduto" id="qtdProduto" value="">
     <br> 
