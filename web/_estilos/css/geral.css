@@ -6,6 +6,8 @@ body{
     height:100%;
     font-family: Helvetica, 1Tahoma, sans-serif, Arial;
 }
+
+//foi
 #topo{
     height: 50px;
     background-image: url('../img/bg_topo.png');
@@ -72,7 +74,7 @@ body{
 a{text-decoration: none; color: #000;}
 a:hover{text-decoration: underline;}
 .Tcentro{text-align: center;}
-.ocultar{ visibility: hidden;}
+.ocultar{ visibility: hidden; }
 
 input, textarea{padding: 5px;}
 form, span{ font-weight: bold; }
