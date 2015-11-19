@@ -66,7 +66,7 @@ $(function() {
 });
   
 function Ocultar(id,acao){    
-    if(acao==='dinheiro'){
+    if(acao==='D'){
         $( "#"+id ).removeClass( "ocultar" );
         $( "#"+id ).fadeIn(100); 
     }else{
