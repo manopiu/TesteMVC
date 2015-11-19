@@ -3,7 +3,7 @@
   <tr>
     <th class="ui-widget-header padding" >NOME</th>
     <th class="ui-widget-header padding" >CNPJ</th>
-    <th class="ui-widget-header padding" >ENDEREÇOdmnfsd,mfns,dmf,sd</th>
+    <th class="ui-widget-header padding" >ENDEREÇO</th>
     <th class="ui-widget-header padding" >TELEFONE</th>
     <th class="ui-widget-header padding" >EMAIL</th>
     <th class="ui-widget-header padding" >AÇÃO</th>
