@@ -187,6 +187,25 @@ if($acao == "carregar"){
 		header("location:".URL."/Pedido/novo");
 	}
 	
+}else if($acao == "meusPedidos"){
+	echo "<br>dentro de meusPedidos<br>";
+	
+	//buscar todos os pedidos ativos
+	
+	$clienteDTO = new ClienteDTO();
+	$clienteDTO = unserialize ($_SESSION['usuario']);
+	
+	$pedidoModel = new PedidoModel();
+	$arrayPedidos = $pedidoModel->recuperarPedidos($clienteDTO->getUsu_id());
+		
+	//foreach($arrayPedidos as $pedidoDTO) {
+	//	echo "<br>".$pedidoDTO->getId()." sdadgre".$pedidoDTO->getValorTotal()."<br>";
+		//$pedidoDTO->setArrayProdutos(produtosPedido($pedido2DTO->getId()));
+	//}
+	
+	$_SESSION['pedidos'] = serialize($arrayPedidos);
+	
+	header("location:".URL."/Pedido/acompanhar");
 }
 
 ?>

@@ -1,6 +1,17 @@
+<?php 
+require_once '/objetos/ProdutoDTO.php';
+require_once '/objetos/PedidoDTO.php';
+
+if(isset($_SESSION['pedidos'])){
+	$arrayPedidos = unserialize ($_SESSION['pedidos']);
+}
+ 
+ ?>
+
 <h1>Acompanhar Pedido</h1>
 
 <div id="accordion">
+<?php foreach($arrayPedidos as $pedidoDTO) {?>
   <h3><b>Pedido n&ordm;:</b> 0045 - <b>Data:</b> 02/11/2015 - <b>Status: </b>Saiu para entrega</h3>
   <div>
     <p>
@@ -35,41 +46,6 @@
    
     </p>
   </div>
-  <h3>Pedido n&ordm;:</b> 0047 - <b>Data:</b> 02/11/2015 - <b>Status: </b>Elabora&ccedil;&atilde;o do pedido</h3>
-  <div>
-    <p>
-    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-    suscipit faucibus urna.
-    </p>
-  </div>
-  <h3>Pedido n&ordm;:</b> 0048 - <b>Data:</b> 02/11/2015 - <b>Status: </b>Elabora&ccedil;&atilde;o do pedido</h3>
-  <div>
-    <p>
-    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-    </p>
-    <ul>
-      <li>List item one</li>
-      <li>List item two</li>
-      <li>List item three</li>
-    </ul>
-  </div>
-  <h3>Pedido n&ordm;:</b> 0049 - <b>Data:</b> 02/11/2015 - <b>Status: </b>Cancelado</h3>
-  <div>
-    <p>
-    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    <p>
-    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos.
-    </p>
-  </div>
+  <?php }?>
+  
 </div>

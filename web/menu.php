@@ -22,7 +22,7 @@ if(isset($_SESSION['usuario'])){
 <a href="<?php echo URL.'/Promocoes/';?>" class="botao">Promo&ccedil&otildees</a>
 <a href="<?php echo URL.'/Produto/Menu';?>" class="botao">Menu</a>
 <a href="<?php echo URL.'/controller/PedidoController.php?acao=carregar';?>" class="botao">Fazer Pedido</a>
-<a href="<?php echo URL.'/Pedido/acompanhar';?>" class="botao">Acompanhar Pedido</a>
+<a href="<?php echo URL.'/controller/PedidoController.php?acao=meusPedidos';?>" class="botao">Acompanhar Pedido</a>
 
 <a class="sair tip" href="<?php echo URL.'/web/login/sair.php';?>">Sair</a>
 
