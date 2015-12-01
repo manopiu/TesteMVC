@@ -21,19 +21,33 @@
 			name="produtoFrm" id="produtoFrm">
     
     <span>NOME:</span><br>
-    <input class="campotexto800" type="text" name="nome" 
+    <input class="campotexto800" type="text" name="nome" id="nome" 
     	value="<?php print $produtosDTO->getNome(); ?>"> <br>
     
     <span>DESCRIÇÃO:</span><br>
-    <input class="campotexto800" type="text" name="nome" 
+    <input class="campotexto800" type="text" name="descricao" id="descricao" 
     	value="<?php print $produtosDTO->getDescricao(); ?>"> <br>
     
-    <span>TAMANHO:</span><br>
-    <input class="campotexto800" type="text" name="nome" 
-    	value="<?php print $produtosDTO->getTamanho(); ?>"> <br>
+    <span>TAMANHO:</span>
+    	<span style="width: 80px; font-weight: normal; color: red;">&nbsp;&nbsp;*usar apenas para pizza</span><br>
+    <span>
+     	<select  class="paddingcinco"  name="tamanho" id="tamanho">
+     		<option value="" selected="selected"
+     		></option>
+     		<option value="P" 
+     			<?php if($produtosDTO->getTamanho() == 'P'){?>selected="selected"<?php }?>
+     		>Pequena</option>
+     		<option value="M" 
+     			<?php if($produtosDTO->getTamanho() == 'M'){?>selected="selected"<?php }?>
+     		>M&eacute;dia</option>
+     		<option value="G" 
+     			<?php if($produtosDTO->getTamanho() == 'G'){?>selected="selected"<?php }?>
+     		>Grande</option>
+     	</select>
+     </span>&nbsp;<br>
     
     <span>VALOR:</span><br>
-    <input class="" type="text" name="telefone" 
+    <input class="" type="text" name="valor" id="valor" 
     	value="<?php print $produtosDTO->getCusto(); ?>"><br>        
     <span>STATUS:</span><br>
     <span>
@@ -48,7 +62,8 @@
      </span>&nbsp;
     <br>  
   
-    <br> 
+    <br>
+    <input type="hidden" name="idProduto" id="idProduto" value="<?php print $produtosDTO->getId();?>"> 
     <input type="hidden" name="acao" id="acao" value="updateProduto">
     <input type="submit" value="Alterar" class="botao direita">
 </form>

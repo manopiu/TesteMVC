@@ -108,9 +108,6 @@ class ProdutoModel{
 		}
 		
 		$conn->fecharConn();
-		
-		return $produtosArray;
-		
 	}
 	
 	//buscar todos os produtos. Ativos ou Inativos
@@ -160,17 +157,61 @@ class ProdutoModel{
 	}
 	
 	//cadastrar produto
-	public function cadastrarProduto(){
-	
+	public function cadastrarProduto($produtoDTO){
+		echo "Dentro cadastrarProduto";
+		
+		$sql = "INSERT INTO `tb_produto`(`prod_descricao`, 
+					`prod_tamanho`, `prod_custo`, `prod_status`, `prod_nome`) 
+				
+				VALUES ('".$produtoDTO->getDescricao()."','".$produtoDTO->getTamanho()."',
+						".$produtoDTO->getCusto().",'".$produtoDTO->getStatus()."',
+								'".$produtoDTO->getNome()."');";
+		
+			
+		echo "<br>".$sql;
+		
+		$conn = new Conexao();
+		
+		$mysqli = $conn->Conn();
+		
+		
+			
+		if($mysqli->query($sql) === TRUE){
+		
+			echo "<br>Atualizado com sucesso<br>";
+		
+		}
+		
+		$conn->fecharConn();
 	}
 	
 	//atualizar produto
-	public function atualizarProduto(){
-	
-	}
-	
-	
-	
+	public function atualizarProduto($produtoDTO){
+		echo "Dentro atualizarProduto";
+		
+		$sql = "UPDATE `tb_produto` SET `prod_descricao`= '".$produtoDTO->getDescricao().
+				"',`prod_tamanho`= '".$produtoDTO->getTamanho().
+				"',`prod_custo`=".$produtoDTO->getCusto().
+				",`prod_status`='".$produtoDTO->getStatus().
+				"',`prod_nome`= '".$produtoDTO->getNome()."' WHERE prod_id = ".$produtoDTO->getId().";";
+		
+			
+		echo "<br>".$sql;
+		
+		$conn = new Conexao();
+		
+		$mysqli = $conn->Conn();
+		
+		
+			
+		if($mysqli->query($sql) === TRUE){
+		
+			echo "<br>Atualizado com sucesso<br>";
+				
+		}
+		
+		$conn->fecharConn();
+	}	
 }
 
 ?>

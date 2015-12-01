@@ -56,11 +56,11 @@ function updateProduto(idProduto){
 	  		foreach ($arrayProdutos as $produto){
 	?>
 	  <tr>
-	    <td align="left"><?php print $produto->getNome();?></td>
-	    <td><?php print $produto->getDescricao();?></td>
-	    <td style="width: 150px;"><?php print $produto->getTamanho();?></td>
-	    <td>R$ <?php print $produto->getCusto();?></td>
-	    <td><?php 
+	    <td align="left" style="width: 150px; font-weight: normal"><?php print $produto->getNome();?></td>
+	    <td style="width: 150px; font-weight: normal"><?php print $produto->getDescricao();?></td>
+	    <td style="width: 150px; font-weight: normal"><?php print $produto->getTamanho();?></td>
+	    <td style="width: 150px; font-weight: normal">R$ <?php print $produto->getCusto();?></td>
+	    <td style="width: 150px; font-weight: normal"><?php 
 	    		if($produto->getStatus() == 'S'){
 	    			print "Ativo";
 	    		}else{
@@ -68,14 +68,14 @@ function updateProduto(idProduto){
 	    		}
 	    	?>
 	    </td>
-	    <td  style="width: 100px;">  
+	    <td style="width: 150px; font-weight: normal">  
 	        <a href="#" class="editar"
 	        	onclick="updateProduto('<?php print $produto->getId();?>');">
 	        	Editar 	
 	        </a>
 	        <a href="#" class="excluir"
 	        	onclick="mudarStatusProduto('<?php print $produto->getId();?>','<?php print $produto->getStatus();?>');"
-	        	>
+	        	>Alterar Situa&ccedil;&atilde;o
 	        </a>        
 	    </td>
 	  </tr>  

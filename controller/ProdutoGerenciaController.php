@@ -3,9 +3,7 @@
 echo "Produto Controller<br>";
 
 require_once '../model/ProdutoModel.php';
-require_once '../model/PedidoModel.php';
 require_once '../objetos/ProdutoDTO.php';
-require_once '../objetos/PedidoDTO.php';
 require_once '../objetos/ClienteDTO.php';
 require_once '../config/includes/config.php';
 
@@ -86,29 +84,88 @@ if($acao == "carregar"){
 }else if($acao == "updateProduto"){
 	echo "<br>dentro de updateProduto<br>";
 	
+	//recuperando os dados
+	$produtoID = $_POST["idProduto"];
+	$nome = $_POST["nome"];
+	$descricao = $_POST["descricao"];
+	$tamanho = $_POST["tamanho"];
+	$custo = $_POST["valor"];
+	$status = $_POST["status"];
+	
+	//Carregar DTO do tipo produto
+	$produtoDTO = new ProdutoDTO();
+	
+	$produtoDTO->setId($produtoID);
+	$produtoDTO->setNome($nome);
+	$produtoDTO->setDescricao($descricao);
+	$produtoDTO->setTamanho($tamanho);
+	str_replace(",",".",$produtoDTO->setCusto($custo));
+	$produtoDTO->setStatus($status);
+	
+	//instanciar model
+	$produtoModel = new ProdutoModel();
+	$produtoModel->atualizarProduto($produtoDTO);
+	
+	//carregar produtos e voltar pra pagina de gerenciamento
+	//limpar produtoDTO
+	if(isset($_SESSION['produtos'])){
+		unset($_SESSION['produtos']);
+	}
+	
+	//buscar todos os produtos ativos
+	$produtoModel = new ProdutoModel();
+	$arrayProdutos = $produtoModel->buscarTodosProdutos();
+	$_SESSION['produtos'] = serialize($arrayProdutos);
+	
+	foreach($arrayProdutos as $produtoDTO) {
+		print $produtoDTO->getNome()." sdadgre<br>";
+	}
 	
 	header("location:".URL."/Produto/ProdutoGerencia");
 	
 	
-}else if($acao == "meusPedidos"){
-	echo "<br>dentro de meusPedidos<br>";
+}else if($acao == "cadastrarProduto"){
+	echo "<br>dentro de cadastrarProduto<br>";
 	
-	//buscar todos os pedidos ativos
+	//recuperando os dados
+	$produtoID = $_POST["idProduto"];
+	$nome = $_POST["nome"];
+	$descricao = $_POST["descricao"];
+	$tamanho = $_POST["tamanho"];
+	$custo = $_POST["valor"];
+	$status = $_POST["status"];
 	
-	$clienteDTO = new ClienteDTO();
-	$clienteDTO = unserialize ($_SESSION['usuario']);
+	//Carregar DTO do tipo produto
+	$produtoDTO = new ProdutoDTO();
 	
-	$pedidoModel = new PedidoModel();
-	$arrayPedidos = $pedidoModel->recuperarPedidos($clienteDTO->getUsu_id());
-		
-	//foreach($arrayPedidos as $pedidoDTO) {
-	//	echo "<br>".$pedidoDTO->getId()." sdadgre".$pedidoDTO->getValorTotal()."<br>";
-		//$pedidoDTO->setArrayProdutos(produtosPedido($pedido2DTO->getId()));
-	//}
+	$produtoDTO->setId($produtoID);
+	$produtoDTO->setNome($nome);
+	$produtoDTO->setDescricao($descricao);
+	$produtoDTO->setTamanho($tamanho);
+	$produtoDTO->setCusto(str_replace(",",".",$custo));
+	$produtoDTO->setStatus($status);
 	
-	$_SESSION['pedidos'] = serialize($arrayPedidos);
+	//instanciar model
+	$produtoModel = new ProdutoModel();
+	$produtoModel->cadastrarProduto($produtoDTO);
 	
-	header("location:".URL."/Pedido/acompanhar");
+	//carregar produtos e voltar pra pagina de gerenciamento
+	//limpar produtoDTO
+	if(isset($_SESSION['produtos'])){
+		unset($_SESSION['produtos']);
+	}
+	
+	//buscar todos os produtos ativos
+	$produtoModel = new ProdutoModel();
+	$arrayProdutos = $produtoModel->buscarTodosProdutos();
+	$_SESSION['produtos'] = serialize($arrayProdutos);
+	
+	foreach($arrayProdutos as $produtoDTO) {
+		print $produtoDTO->getNome()." sdadgre<br>";
+	}
+	
+	header("location:".URL."/Produto/ProdutoGerencia");
+	
 }
 
 ?>

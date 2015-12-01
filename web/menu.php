@@ -7,7 +7,7 @@ if(isset($_SESSION['usuario'])){
 
 <a href="<?php echo URL.'/Cliente/';?>" class="botao">Cliente</a>
 <a href="<?php echo URL.'/Entregadores/';?>" class="botao">Entregadores</a>
-<a href="<?php echo URL.'/Empresas/';?>" class="botao">Empresas</a>
+<a href="<?php echo URL.'/controller/EmpresaController.php?acao=carregar';?>" class="botao">Empresas</a>
 <a href="<?php echo URL.'/controller/ProdutoGerenciaController.php?acao=carregar';?>" class="botao">Produto</a>
 <a href="<?php echo URL.'/Pedido/';?>" class="botao">Pedido</a>
 <a href="<?php echo URL.'/Pedido/';?>" class="botao">Relatório</a>
