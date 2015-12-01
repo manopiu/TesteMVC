@@ -19,7 +19,7 @@ function cancelarProduto(idProduto,qtd){
 <h2>Fa&ccedila seu pedido.</h2>
 <?php
 
- require_once 'objetos/ClienteDTO.php';
+ require_once '/objetos/ClienteDTO.php';
  require_once '/objetos/ProdutoDTO.php';
  require_once '/objetos/PedidoDTO.php';
  

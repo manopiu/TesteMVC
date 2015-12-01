@@ -12,7 +12,9 @@ if(isset($_SESSION['pedidos'])){
 
 <div id="accordion">
 <?php foreach($arrayPedidos as $pedidoDTO) {?>
-  <h3><b>Pedido n&ordm;:</b> 0045 - <b>Data:</b> 02/11/2015 - <b>Status: </b>Saiu para entrega</h3>
+  <h3><b>Pedido n&ordm;:</b> <?php print $pedidoDTO->getID();?> - 
+  		<b>Data:</b> <?php print $pedidoDTO->getDataPedido(); ?> - 
+  		<b>Status: </b><?php print $pedidoDTO->getStatus();?></h3>
   <div>
     <p>
     <table border="0" class="ui-widget ui-widget-content ui-corner-all padding Tcentro">
@@ -22,25 +24,22 @@ if(isset($_SESSION['pedidos'])){
        	<th WIDTH="100" align="center" class="ui-widget-header padding">Quantidade</th>
        	<th WIDTH="70" align="center" class="ui-widget-header padding">Valor total</th>
     </tr>
+    <?php foreach ($pedidoDTO->getArrayProdutos() as $produtosDTO) {?>
     <tr>
-    	<td > Marguerita - Grande</td>
-    	<td align="center">23,00</td>
-    	<td align="center">2</td>
-    	<td align="center">46,00</td>
+    	<td ><?php print $produtosDTO->getNome();?></td>
+    	<td align="center"><?php print $produtosDTO->getCusto();?></td>
+    	<td align="center"><?php print $produtosDTO->getQuantidade();?></td>
+    	<td align="center"><?php print number_format(($produtosDTO->getCusto() 
+    			* $produtosDTO->getQuantidade()),2,".","");?></td>
     </tr>
-    <tr>
-    	<td > Calabresa - M&eacute;dia</td>
-    	<td align="center">16,00</td>
-    	<td align="center">1</td>
-    	<td align="center">16,00</td>
-    </tr>
+    <?php }?>
     <tr>
     	<td colspan="3" align="right">Taxa de entrega:</td>
-     	<td align="center">4,00</td>    	
+     	<td align="center"><?php print $pedidoDTO->getTaxa(); ?></td>    	
     </tr>
     <tr>
     	<td colspan="3" align="right">Valor total:</td>
-     	<td align="center">66,00</td>    	
+     	<td align="center"><?php print $pedidoDTO->getValorTotal(); ?></td>    	
     </tr>
     </table>
    

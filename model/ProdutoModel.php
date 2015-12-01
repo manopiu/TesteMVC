@@ -14,12 +14,12 @@ class ProdutoModel{
 		
 		$conn = new Conexao();
 		
-		$query = $conn->Conn();
+		$mysqli = $conn->Conn();
 		
 		//criar um array que irá receber a lista de produtos
 		$produtoDTO = new ProdutoDTO();
 			
-		if($resultado = $query->query($sql)){
+		if($resultado = $mysqli->query($sql)){
 				
 			while ($row = mysqli_fetch_array($resultado)) {
 				//echo "dentro ".$row['prod_id']." - ".$row['prod_nome']."<br>";
@@ -83,9 +83,75 @@ class ProdutoModel{
 		return $produtosArray;
 	}
 	
-	//buscar todos os produtos
-	public function buscarProdutos(){
+	//mudar status do produto
+	public function mudarStatusProduto($produtoID,$statusProduto){
+		echo 'mudarStatusProduto';
+			
+		if($statusProduto == 'S'){
+			$sql = "UPDATE `tb_produto` SET `prod_status` = 'N' WHERE prod_id = $produtoID;";
+		}elseif ($statusProduto == 'N'){
+			$sql = "UPDATE `tb_produto` SET `prod_status` = 'S' WHERE prod_id = $produtoID;";
+		}
+			
+		echo "<br>".$sql;
+		
+		$conn = new Conexao();
+		
+		$mysqli = $conn->Conn();
+		
+		
+			
+		if($mysqli->query($sql) === TRUE){
+		
+			echo "<br>Atualizado com sucesso<br>";
+			
+		}
+		
+		$conn->fecharConn();
+		
+		return $produtosArray;
+		
+	}
 	
+	//buscar todos os produtos. Ativos ou Inativos
+	public function buscarTodosProdutos(){
+		echo 'buscarTodosProdutos';
+			
+		$sql = "SELECT * FROM `tb_produto`;";
+		
+		$conn = new Conexao();
+		
+		$query = $conn->Conn();
+		
+		//criar um array que irá receber a lista de produtos
+		$produtosArray = array();
+			
+		if($resultado = $query->query($sql)){
+				
+			while ($row = mysqli_fetch_array($resultado)) {
+				//echo "dentro ".$row['prod_id']." - ".$row['prod_nome']."<br>";
+				$produtoDTO = new ProdutoDTO();
+		
+				$produtoDTO->setId($row['prod_id']);
+				$produtoDTO->setNome($row['prod_nome']);
+				$produtoDTO->setTamanho($row['prod_tamanho']);
+				$produtoDTO->setCusto($row['prod_custo']);
+				$produtoDTO->setStatus($row['prod_status']);
+				$produtoDTO->setDescricao($row['prod_descricao']);
+		
+				$produtosArray[] = ($produtoDTO);
+				//echo "id: $genero[0], Genero: $genero[1]<br>";
+					
+				//echo ;
+				//echo "<br>$i<br>";
+		
+			}
+			mysqli_free_result($resultado);
+		}
+		$conn->fecharConn();
+		
+		return $produtosArray;
+		
 	}
 	
 	//buscar produto por texto

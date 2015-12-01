@@ -1,30 +1,54 @@
+<?php
+
+ require_once '/objetos/ClienteDTO.php';
+ require_once '/objetos/ProdutoDTO.php';
+ 
+ if(isset($_SESSION['usuario'])){
+ 	$cliente = unserialize ($_SESSION['usuario']);
+ }else{
+ 	header("location:".URL);
+ }
+ 
+ if(isset($_SESSION['produto'])){
+ 	$produtosDTO = unserialize ($_SESSION['produto']);
+ }
+
+?>
 <H1>ALTERAR PRODUTO</H1>
 
 
-<form action="../controller/UsuarioController.php" method="POST"
-			name="cadastrarUsuario" id="cadastrarusuario">
+<form action="../controller/ProdutoGerenciaController.php" method="POST"
+			name="produtoFrm" id="produtoFrm">
     
     <span>NOME:</span><br>
     <input class="campotexto800" type="text" name="nome" 
-    	value="Pizza Calabresa"> <br>
+    	value="<?php print $produtosDTO->getNome(); ?>"> <br>
     
     <span>DESCRIÇÃO:</span><br>
     <input class="campotexto800" type="text" name="nome" 
-    	value="Queijo e Calabresa"> <br>
+    	value="<?php print $produtosDTO->getDescricao(); ?>"> <br>
     
     <span>TAMANHO:</span><br>
-    <select name="empresa" class="paddingcinco" >
-        <option value="">SELECIONE</option>
-        <option selected value="">PEQUENA</option>
-        <option value="">MÉDIA</option>
-        <option value="">GRANDE</option>
-    </select><br>
+    <input class="campotexto800" type="text" name="nome" 
+    	value="<?php print $produtosDTO->getTamanho(); ?>"> <br>
     
     <span>VALOR:</span><br>
     <input class="" type="text" name="telefone" 
-    	value="12,00"><br>        
-    
+    	value="<?php print $produtosDTO->getCusto(); ?>"><br>        
+    <span>STATUS:</span><br>
+    <span>
+     	<select  class="paddingcinco"  name="status" id="status">
+     		<option value="S" 
+     			<?php if($produtosDTO->getStatus() == 'S'){?>selected="selected"<?php }?>
+     		>Ativo</option>
+     		<option value="N" 
+     			<?php if($produtosDTO->getStatus() == 'N'){?>selected="selected"<?php }?>
+     		>Inativo</option>
+     	</select>
+     </span>&nbsp;
+    <br>  
   
     <br> 
-    <input type="submit" value="Cadastrar" class="botao direita">
+    <input type="hidden" name="acao" id="acao" value="updateProduto">
+    <input type="submit" value="Alterar" class="botao direita">
 </form>

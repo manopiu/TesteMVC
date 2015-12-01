@@ -1,4 +1,24 @@
+<?php
+
+ require_once '/objetos/ClienteDTO.php';
+ require_once '/objetos/ProdutoDTO.php';
+ 
+ if(isset($_SESSION['usuario'])){
+ 	$cliente = unserialize ($_SESSION['usuario']);
+ }else{
+ 	header("location:".URL);
+ }
+ 
+ //receber o array de produtos
+ if(isset($_SESSION['produtos'])){
+ 	$arrayProdutos = unserialize ($_SESSION['produtos']);
+ }
+ 
+ 
+ ?>
+
 <h1>Produtos Dispon&iacute;veis</h1><br>
+
 <table class="ui-widget ui-widget-content ui-corner-all padding Tcentro">
   <tr>
     <th  style="width: 700px;" class="ui-widget-header padding" >NOME</th>
@@ -6,26 +26,15 @@
     <th class="ui-widget-header padding" >TAMANHO</th>
     <th class="ui-widget-header padding" >CUSTO</th>
   </tr>
-  
+  <?php 
+  		foreach ($arrayProdutos as $produtos){
+  ?>	
   <tr>
-      <td>Pizza Calabresa</td>
-      <td>Queijo e Calabresa</td>
-    <td style="width: 150px;">PEQUENA</td>
-    <td>R$ 12,00</td>
+      <td><?php echo $produtos->getNome();?></td>
+      <td><?php print $produtos->getDescricao();?></td>
+    <td style="width: 150px;"><?php print $produtos->getTamanho();?></td>
+    <td><?php echo $produtos->getCusto();?></td>
   </tr>  
   
-  <tr>
-    <td>Pizza Portuguesa</td>
-    <td>Queijo, ovo, calabresa e piment&atilde;o</td>
-    <td style="width: 150px;">GRANDE</td>
-    <td>R$ 23,00</td>
-  </tr>  
-  
-  <tr>
-      <td>Pizza de mussarela</td>
-      <td>Queijo tipo mussarela</td>
-    <td style="width: 150px;">GRANDE</td>
-    <td>R$ 18,00</td>
-  </tr> 
-  
+ <?php }?>
 </table>

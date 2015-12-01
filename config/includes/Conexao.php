@@ -20,6 +20,9 @@ class Conexao{
 		
 		echo "Successo: A conexao SQL funcionou! A conexao ao banco de dados está bom. <br>";
 		echo "Host information: " . mysqli_get_host_info($conn) . "<br>";
+	
+		//definir transações em utf8
+		$conn->set_charset('utf8');
 		
 		return $conn;
 		//mysqli_close($link);

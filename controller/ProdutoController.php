@@ -1,6 +1,6 @@
 <?php
 
-echo "Pedido Controller<br>";
+echo "Produto Controller<br>";
 
 require_once '../model/ProdutoModel.php';
 require_once '../model/PedidoModel.php';
@@ -25,20 +25,10 @@ echo '<br>'.$acao;
 
 if($acao == "carregar"){
 	echo "Dentro";
-	
-	if(isset($_SESSION['produtosCarrinho'])){
-		unset($_SESSION['produtosCarrinho']);
-	}
-	if(isset($_SESSION['taxaEntrega'])){
-		unset($_SESSION['taxaEntrega']);
-	}
+
 	//limpar produtoDTO 
 	if(isset($_SESSION['produtos'])){
 		unset($_SESSION['produtos']);
-	}
-	//limpar pedidoDTO
-	if(isset($_SESSION['pedido'])){
-		unset($_SESSION['pedido']);
 	}
 	
 	//buscar todos os produtos ativos
@@ -46,29 +36,11 @@ if($acao == "carregar"){
 	$arrayProdutos = $produtoModel->buscarProdutosAtivos();
 	$_SESSION['produtos'] = serialize($arrayProdutos);
 	
-	//buscar a taxa de entrega vigente
-	$pedidoModel = new PedidoModel();
-	$taxa = $pedidoModel->buscarTaxaVigente();
+	foreach($arrayProdutos as $produtoDTO) {
+	   print $produtoDTO->getNome()." sdadgre<br>";
+	}
 	
-	//criar um produtoDTO novo
-	$pedidoDTO = new PedidoDTO();
-	$pedidoDTO->setTaxa($taxa);
-	echo "<br>Taxa = ".$pedidoDTO->getTaxa();
-	
-	$clienteDTO = new ClienteDTO();
-	$clienteDTO = unserialize ($_SESSION['usuario']);
-	
-	//echo "<br>".$clienteDTO->getNome()."<br>";
-	$pedidoDTO->setClienteDTO($clienteDTO);
-	//echo "<br>Taxa = ".$pedidoDTO->getTaxa();
-	$_SESSION['pedido'] = serialize($pedidoDTO);
-	
-	//foreach($arrayProdutos as $produtoDTO) {
- 	//   print $produtoDTO->getNome()." sdadgre<br>";
-	//}
-	
-	
-	header("location:".URL."/Pedido/novo");
+	header("location:".URL."/Produto/Menu");
 	
 }else if($acao == "adicionarCarrinho"){
 	echo "adicionarCarrinho<br>";
@@ -157,9 +129,7 @@ if($acao == "carregar"){
 	//pegando forma de pagamento e valor para troco.
 	$formaPagamento = $_POST["pagamento"];
 	$troco = $_POST["troco"];
-	$troco = str_replace(",",".",$troco);
 	$total = $_POST["total"];
-	$total = str_replace(",",".",$total);
 
 	//setar valor total
 	$pedidoDTO->setValorTotal($total);
@@ -185,7 +155,7 @@ if($acao == "carregar"){
 		echo "salvo = true";
 		header("location:".URL."/Pedido/pedidoRealizado");
 	}else{
-		echo "salvo = false";
+		echo "salvo = flase";
 		header("location:".URL."/Pedido/novo");
 	}
 	
@@ -200,16 +170,10 @@ if($acao == "carregar"){
 	$pedidoModel = new PedidoModel();
 	$arrayPedidos = $pedidoModel->recuperarPedidos($clienteDTO->getUsu_id());
 		
-	foreach($arrayPedidos as $pedidoDTO) {
-		//echo "<br>".$pedidoDTO->getId()." sdadgre".$pedidoDTO->getValorTotal();
-		//echo "<br>".$pedidoDTO->getStatus();
+	//foreach($arrayPedidos as $pedidoDTO) {
+	//	echo "<br>".$pedidoDTO->getId()." sdadgre".$pedidoDTO->getValorTotal()."<br>";
 		//$pedidoDTO->setArrayProdutos(produtosPedido($pedido2DTO->getId()));
-		$arrayProdutos1 = $pedidoDTO->getArrayProdutos();
-		
-		foreach($arrayProdutos1 as $produtoDTO){
-			echo "<br>".$produtoDTO->getNome();
-		}
-	}
+	//}
 	
 	$_SESSION['pedidos'] = serialize($arrayPedidos);
 	

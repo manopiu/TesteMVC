@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario'])){
 <a href="<?php echo URL.'/Cliente/';?>" class="botao">Cliente</a>
 <a href="<?php echo URL.'/Entregadores/';?>" class="botao">Entregadores</a>
 <a href="<?php echo URL.'/Empresas/';?>" class="botao">Empresas</a>
-<a href="<?php echo URL.'/Produto/';?>" class="botao">Produto</a>
+<a href="<?php echo URL.'/controller/ProdutoGerenciaController.php?acao=carregar';?>" class="botao">Produto</a>
 <a href="<?php echo URL.'/Pedido/';?>" class="botao">Pedido</a>
 <a href="<?php echo URL.'/Pedido/';?>" class="botao">Relatório</a>
 
@@ -19,8 +19,8 @@ if(isset($_SESSION['usuario'])){
 	}elseif ($cliente->getUsu_tipo() ==  "C"){
 ?>
 
-<a href="<?php echo URL.'/Promocoes/';?>" class="botao">Promo&ccedil&otildees</a>
-<a href="<?php echo URL.'/Produto/Menu';?>" class="botao">Menu</a>
+<a href="<?php echo URL.'/Produto/Promocao';?>" class="botao">Promo&ccedil&otildees</a>
+<a href="<?php echo URL.'/controller/ProdutoController.php?acao=carregar';?>" class="botao">Menu</a>
 <a href="<?php echo URL.'/controller/PedidoController.php?acao=carregar';?>" class="botao">Fazer Pedido</a>
 <a href="<?php echo URL.'/controller/PedidoController.php?acao=meusPedidos';?>" class="botao">Acompanhar Pedido</a>
 
